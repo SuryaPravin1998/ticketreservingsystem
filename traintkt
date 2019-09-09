@@ -1,0 +1,92 @@
+package trainticket;
+import java.util.*;
+//import java.lang.*;
+public class Mainn {
+	private static Scanner s;
+	public static int seats[]=new int[1000];
+	static void book(String ss,int tn)
+    {
+	 char[] f=ss.toCharArray();
+	 int g=f[1]-'0';
+     g=(g*100)-100;
+     g=g+tn;
+     if(seats[g]==0)
+     {
+    	 seats[g]=1;
+     }
+     else
+     {
+    	 System.out.println("Already booked!!Select other seat or try for the other coach");
+     }
+    }
+    static void cancel(String ss,int tn)
+	{
+		 char[] f=ss.toCharArray();
+	     int g=f[1]-'0';
+	     g=(g*100)-100;
+	     g=g+tn;
+	     if(seats[g]!=0)
+	     {
+	     seats[g]=0;
+	     System.out.print("Ticket Cancelled Successfully");
+	     }
+	     else
+	     {
+	    	 System.out.print("Cancelled already");
+	     }
+	}
+	static void printticket()
+	{
+		int i;
+		System.out.println("Available seats are:");
+		for(i=1;i<1000;i++)
+		{
+		if(seats[i]!=1)
+		{
+			System.out.print("Coach S"+(i/100)+" ");
+			System.out.print("Seat number:"+(i%100));
+			System.out.println();
+		}
+			
+		}
+	}
+	
+	
+	
+	public static void main(String[] args)
+	{
+		for(;;)
+		{
+		System.out.println("Welcome to Railways");
+		System.out.println("Press 1 for Ticket Booking");
+		System.out.println("Press 2 to cancel ticket");
+		System.out.println("Press 3 to check availability");
+		System.out.println("Press 4 to exit");
+		s = new Scanner(System.in);
+		int x=s.nextInt();
+		String coach="";
+		int ticketnumber=0;
+		if(x<3)
+		{
+			System.out.print("Enter coach number & ticket number");
+			coach=s.next();
+			ticketnumber=s.nextInt();
+		}
+		switch(x)
+		{
+			case 1:
+				book(coach,ticketnumber);
+				break;
+			case 2:
+				cancel(coach,ticketnumber);
+				break;
+			case 3:
+				printticket();
+				break;
+			case 4:
+				System.exit(1);
+			}
+	}
+}
+
+}
